@@ -1,0 +1,14 @@
+{
+  "name": "nd004-neighborhood-map",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/kulshekhar/nd004-neighborhood-map",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/googlemaps": "^3.26.14",
+    "@types/knockout": "^3.4.41"
+  },
+  "dependencies": {
+    "knockout": "^3.4.2"
+  }
+}
