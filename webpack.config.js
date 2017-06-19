@@ -3,7 +3,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const extractSass = new ExtractTextPlugin({
   filename: "style.css",
-  disable: process.env.NODE_ENV !== "production"
+  disable: false
 });
 
 module.exports = {
@@ -31,8 +31,6 @@ module.exports = {
         test: /\.scss$/,
         use: extractSass.extract({
           use: [{
-            loader: "style-loader" // creates style nodes from JS strings
-          }, {
             loader: "css-loader" // translates CSS into CommonJS
           }, {
             loader: "sass-loader" // compiles Sass to CSS
