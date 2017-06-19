@@ -1,28 +1,5 @@
 # nd004-neighborhood-map
 
-This project requires the following packages to be globally installed with npm/yarn:
-
-- typescript
-- webpack
-- lite-server
-- concurrently
-
-Install them using npm:
-
-```
-npm i -g typescript webpack lite-server concurrently
-```
-
-OR using yarn
-
-```
-yarn global add typescript webpack lite-server concurrently
-```
-
-Ensure that the executables for these packages are in your PATH.
-
-## Info
-
 In addition to Google maps, this project uses APIs from Foursquare to obtain social media details for the selected places.
 
 ## Setup
