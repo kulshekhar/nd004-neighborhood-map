@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rm dist -rf && mkdir dist",
     "build": "yarn run clean && NODE_ENV=production webpack -p --config webpack.prod.config.js",
-    "serve": "webpack-dev-server"
+    "serve": "concurrently 'webpack -w' 'lite-server'"
   },
   "devDependencies": {
     "@types/googlemaps": "^3.26.14",
