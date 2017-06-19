@@ -41,7 +41,7 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        loader: 'file-loader?name=index.html'
+        loader: 'file-loader?name=[name].html'
       }
     ]
   },
