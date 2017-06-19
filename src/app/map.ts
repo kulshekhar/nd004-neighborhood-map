@@ -67,6 +67,8 @@ export class GMap {
     name = name || '';
     let count = 0;
     this.detailList.forEach(d => {
+      d.infoWindow.close();
+      d.minimalInfoWindow.close();
       if (d.place.name.toLowerCase().indexOf(name.trim().toLowerCase()) >= 0) {
         d.marker.setMap(this.map);
         d.minimalInfoWindow.open(this.map, d.marker);

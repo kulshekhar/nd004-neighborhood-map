@@ -140,6 +140,8 @@ var GMap = (function () {
         name = name || '';
         var count = 0;
         this.detailList.forEach(function (d) {
+            d.infoWindow.close();
+            d.minimalInfoWindow.close();
             if (d.place.name.toLowerCase().indexOf(name.trim().toLowerCase()) >= 0) {
                 d.marker.setMap(_this.map);
                 d.minimalInfoWindow.open(_this.map, d.marker);
