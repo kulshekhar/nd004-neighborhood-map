@@ -1,4 +1,15 @@
 @charset "UTF-8";
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: Roboto; }
+
+#map {
+  width: 100%;
+  height: 100%; }
+
 .snackbar {
   width: 250px;
   max-width: 80%;
@@ -99,15 +110,7 @@ location-list {
   location-list ul.open {
     display: block; }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  font-family: Roboto; }
-
-#map {
-  width: 100%;
-  height: 100%; }
+.info-icon {
+  margin-right: 16px; }
 
 /*# sourceMappingURL=style.css.map*/

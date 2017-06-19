@@ -63,205 +63,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 16);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "index.html";
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var places_1 = __webpack_require__(15);
-var GMap = (function () {
-    function GMap() {
-        this.mapContainer = document.getElementById('map');
-        this.detailList = [];
-        this.places = [];
-        this.map = new google.maps.Map(this.mapContainer, {
-            center: places_1.defaultLocation,
-            zoom: 14,
-        });
-        this.initializeMarkers();
-        this.handleClicksOutside();
-    }
-    GMap.prototype.initializeMarkers = function () {
-        var _this = this;
-        this.places = places_1.defaultPlaces;
-        places_1.defaultPlaces.forEach(function (p) {
-            var marker = new google.maps.Marker({
-                position: p.geometry.location,
-                map: _this.map,
-                title: p.name
-            });
-            var infoWindow = new google.maps.InfoWindow({
-                content: "<h3>" + p.name + "</h3>\n        <p>" + p.formatted_address + "</p>\n        "
-            });
-            var minimalInfoWindow = new google.maps.InfoWindow({
-                content: "<b>" + p.name + "</b>"
-            });
-            marker.addListener('click', function () {
-                _this.closeAllInfoWindows();
-                infoWindow.open(_this.map, marker);
-            });
-            _this.detailList.push({ place: p, infoWindow: infoWindow, marker: marker, minimalInfoWindow: minimalInfoWindow });
-        });
-    };
-    GMap.prototype.handleClicksOutside = function () {
-        var _this = this;
-        google.maps.event.addListener(this.map, 'click', function (e) {
-            _this.detailList.forEach(function (d) {
-                d.infoWindow.close();
-                d.minimalInfoWindow.close();
-            });
-        });
-    };
-    GMap.prototype.closeAllInfoWindows = function () {
-        this.detailList.forEach(function (d) {
-            d.infoWindow.close();
-            d.minimalInfoWindow.close();
-        });
-    };
-    GMap.prototype.showMatchingPlaces = function (name) {
-        var _this = this;
-        name = name || '';
-        var count = 0;
-        this.detailList.forEach(function (d) {
-            d.infoWindow.close();
-            d.minimalInfoWindow.close();
-            if (d.place.name.toLowerCase().indexOf(name.trim().toLowerCase()) >= 0) {
-                d.marker.setMap(_this.map);
-                d.minimalInfoWindow.open(_this.map, d.marker);
-                count += 1;
-            }
-            else {
-                d.marker.setMap(null);
-            }
-        });
-        return count;
-    };
-    GMap.prototype.showAllMarkers = function () {
-        var _this = this;
-        this.detailList.forEach(function (d) {
-            d.marker.setMap(_this.map);
-        });
-    };
-    GMap.prototype.choosePlace = function (place) {
-        var _this = this;
-        this.detailList.forEach(function (d) {
-            if (d.place === place) {
-                _this.closeAllInfoWindows();
-                d.infoWindow.open(_this.map, d.marker);
-            }
-        });
-    };
-    return GMap;
-}());
-exports.GMap = GMap;
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var _this = this;
-Object.defineProperty(exports, "__esModule", { value: true });
-var ko = __webpack_require__(5);
-__webpack_require__(0);
-__webpack_require__(1);
-var snackbar_1 = __webpack_require__(16);
-var map_1 = __webpack_require__(2);
-var location_list_c_1 = __webpack_require__(6);
-var hello_c_1 = __webpack_require__(11);
-var place_filter_c_1 = __webpack_require__(17);
-var vm_1 = __webpack_require__(20);
-(function () { return __awaiter(_this, void 0, void 0, function () {
-    var e_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 2, , 3]);
-                // Initialize all the components
-                return [4 /*yield*/, Promise.all([
-                        hello_c_1.initHello(),
-                        location_list_c_1.initLocationList(),
-                        place_filter_c_1.initPlaceFilter(),
-                    ])];
-            case 1:
-                // Initialize all the components
-                _a.sent();
-                return [3 /*break*/, 3];
-            case 2:
-                e_1 = _a.sent();
-                snackbar_1.show(e_1.toString(), { backgroundColor: 'red' });
-                console.error(e_1);
-                return [3 /*break*/, 3];
-            case 3:
-                // Set the callback function for google maps
-                window['initMap'] = initializeMap;
-                return [2 /*return*/];
-        }
-    });
-}); })();
-function initializeMap() {
-    var map = new map_1.GMap();
-    ko.applyBindings(new vm_1.MainViewModel(map));
-}
-
-
-/***/ }),
-/* 4 */,
-/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -6204,158 +6010,7 @@ ko.exportSymbol('nativeTemplateEngine', ko.nativeTemplateEngine);
 
 
 /***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var location_list_vm_1 = __webpack_require__(8);
-__webpack_require__(7);
-var koutil_1 = __webpack_require__(14);
-function initLocationList() {
-    return koutil_1.KOUtil.registerComponent('location-list', location_list_vm_1.LocationListVM, '/location-list.html');
-}
-exports.initLocationList = initLocationList;
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "location-list.html";
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var ko = __webpack_require__(5);
-var LocationListVM = (function () {
-    function LocationListVM(params) {
-        var _this = this;
-        this.places = [];
-        this.filteredPlaces = ko.observableArray([]);
-        this.showList = ko.observable(true);
-        if (screen.width < 600) {
-            // hide the list of places by default for smaller screens
-            this.showList = ko.observable(false);
-        }
-        this.onPlaceSelect = params.onPlaceSelect;
-        this.places = params.places || [];
-        this.message = ko.observable(params.greeting || '');
-        this.greeting = ko.computed(function () {
-            return _this.message() && _this.message().trim()
-                ? _this.message().trim()
-                : '';
-        });
-        this.handleFilter(params.filter);
-        this.updateFilter(params.filter());
-    }
-    LocationListVM.prototype.updateFilter = function (s) {
-        s = (s || '').trim();
-        this.filteredPlaces(this.places.filter(function (p) { return p.name.toLowerCase().indexOf(s.toLowerCase()) >= 0; }));
-    };
-    LocationListVM.prototype.handleFilter = function (filter) {
-        filter.subscribe(this.updateFilter.bind(this));
-    };
-    LocationListVM.prototype.toggleList = function () {
-        this.showList(!this.showList());
-    };
-    LocationListVM.prototype.onLocationClickFactory = function (parent) {
-        var _this = this;
-        return function (place) {
-            _this.onPlaceSelect && _this.onPlaceSelect(place);
-        };
-    };
-    return LocationListVM;
-}());
-exports.LocationListVM = LocationListVM;
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-function get(url) {
-    return new Promise(function (resolve, reject) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
-        var failHandler = function (ev) {
-            reject(ev);
-        };
-        xhr.onerror = failHandler;
-        xhr.onabort = failHandler;
-        xhr.ontimeout = failHandler;
-        xhr.onload = function (ev) {
-            if (xhr.status === 200) {
-                resolve(xhr.responseText);
-            }
-            else {
-                failHandler(ev);
-            }
-        };
-        xhr.send();
-    });
-}
-exports.get = get;
-
-
-/***/ }),
-/* 10 */,
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var hello_vm_1 = __webpack_require__(13);
-__webpack_require__(12);
-var koutil_1 = __webpack_require__(14);
-var initialized = false;
-var template = '';
-function initHello() {
-    return koutil_1.KOUtil.registerComponent('my-hello', hello_vm_1.HelloVM, '/hello.html');
-}
-exports.initHello = initHello;
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "hello.html";
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var ko = __webpack_require__(5);
-var HelloVM = (function () {
-    function HelloVM(params) {
-        var _this = this;
-        this.message = ko.observable(params.greeting || '');
-        this.greeting = ko.computed(function () {
-            return _this.message() && _this.message().trim()
-                ? _this.message().trim()
-                : '';
-        });
-    }
-    return HelloVM;
-}());
-exports.HelloVM = HelloVM;
-
-
-/***/ }),
-/* 14 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6396,8 +6051,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var ko = __webpack_require__(5);
-var load_1 = __webpack_require__(9);
+var ko = __webpack_require__(0);
+var load_1 = __webpack_require__(17);
 var KOUtil = (function () {
     function KOUtil() {
     }
@@ -6447,7 +6102,537 @@ exports.KOUtil = KOUtil;
 
 
 /***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function show(message, options) {
+    if (options === void 0) { options = {}; }
+    var snackbar = document.createElement('div');
+    snackbar.className = 'snackbar show';
+    snackbar.innerHTML = message || 'Default message';
+    snackbar.style.color = options.color || '#fff';
+    snackbar.style.backgroundColor = options.backgroundColor || '#333';
+    var duration = options.duration || 3000;
+    document.body.appendChild(snackbar);
+    setTimeout(function () {
+        document.body.removeChild(snackbar);
+    }, duration);
+}
+exports.show = show;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "index.html";
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var hello_vm_1 = __webpack_require__(13);
+__webpack_require__(10);
+var koutil_1 = __webpack_require__(1);
+var initialized = false;
+var template = '';
+function initHello() {
+    return koutil_1.KOUtil.registerComponent('my-hello', hello_vm_1.HelloVM, '/hello.html');
+}
+exports.initHello = initHello;
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var location_list_vm_1 = __webpack_require__(14);
+__webpack_require__(11);
+var koutil_1 = __webpack_require__(1);
+function initLocationList() {
+    return koutil_1.KOUtil.registerComponent('location-list', location_list_vm_1.LocationListVM, '/location-list.html');
+}
+exports.initLocationList = initLocationList;
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var place_filter_vm_1 = __webpack_require__(15);
+__webpack_require__(12);
+var koutil_1 = __webpack_require__(1);
+function initPlaceFilter() {
+    return koutil_1.KOUtil.registerComponent('place-filter', place_filter_vm_1.PlaceFilterVM, '/place-filter.html');
+}
+exports.initPlaceFilter = initPlaceFilter;
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var places_1 = __webpack_require__(18);
+var foursquare_1 = __webpack_require__(20);
+var GMap = (function () {
+    function GMap() {
+        this.mapContainer = document.getElementById('map');
+        this.detailList = [];
+        this.places = [];
+        this.map = new google.maps.Map(this.mapContainer, {
+            center: places_1.defaultLocation,
+            zoom: 14,
+        });
+        this.initializeMarkers();
+        this.handleClicksOutside();
+    }
+    GMap.prototype.initializeMarkers = function () {
+        var _this = this;
+        this.places = places_1.defaultPlaces;
+        places_1.defaultPlaces.forEach(function (p) { return __awaiter(_this, void 0, void 0, function () {
+            var _this = this;
+            var marker, contact, additionalInfo, e_1, infoWindow, minimalInfoWindow;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        marker = new google.maps.Marker({
+                            position: p.geometry.location,
+                            map: this.map,
+                            animation: google.maps.Animation.DROP,
+                            title: p.name
+                        });
+                        additionalInfo = '';
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, foursquare_1.getPlaceContact(p)];
+                    case 2:
+                        contact = _a.sent();
+                        if (contact) {
+                            if (contact.twitter) {
+                                additionalInfo += "<a target=\"_blank\" class=\"info-icon\" href=\"https://twitter.com/" + contact.twitter + "\"><img src=\"https://upload.wikimedia.org/wikinews/en/f/f7/Twitter.png\" alt=\"twitter\"></a>";
+                            }
+                            if (contact.facebookName && contact.facebookUsername) {
+                                additionalInfo += "<a target=\"_blank\" class=\"info-icon\" href=\"https://facebook.com/" + contact.facebookUsername + "\"><img src=\"https://www.codeproject.com/script/Membership/Images/facebook.png\" alt=\"facebook\"> </a>";
+                            }
+                            if (contact.formattedPhone) {
+                                additionalInfo += "<p>Phone: " + contact.formattedPhone + "</p>";
+                            }
+                        }
+                        return [3 /*break*/, 4];
+                    case 3:
+                        e_1 = _a.sent();
+                        return [3 /*break*/, 4];
+                    case 4:
+                        infoWindow = new google.maps.InfoWindow({
+                            content: "<h3>" + p.name + "</h3>\n        " + additionalInfo + "\n        <p>" + p.formatted_address + "</p>\n        "
+                        });
+                        minimalInfoWindow = new google.maps.InfoWindow({
+                            content: "<b>" + p.name + "</b>"
+                        });
+                        marker.addListener('click', function () {
+                            _this.closeAllInfoWindows();
+                            _this.animateMarker(marker);
+                            infoWindow.open(_this.map, marker);
+                        });
+                        this.detailList.push({ place: p, infoWindow: infoWindow, marker: marker, minimalInfoWindow: minimalInfoWindow });
+                        return [2 /*return*/];
+                }
+            });
+        }); });
+    };
+    GMap.prototype.animateMarker = function (marker) {
+        if (marker.getAnimation()) {
+            marker.setAnimation(null);
+        }
+        else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+            // stop the marker from continuing to bounce like a mad person
+            setTimeout(function () {
+                marker.setAnimation(null);
+            }, 750);
+        }
+    };
+    GMap.prototype.handleClicksOutside = function () {
+        var _this = this;
+        google.maps.event.addListener(this.map, 'click', function (e) {
+            _this.detailList.forEach(function (d) {
+                d.infoWindow.close();
+                d.minimalInfoWindow.close();
+            });
+        });
+    };
+    GMap.prototype.closeAllInfoWindows = function () {
+        this.detailList.forEach(function (d) {
+            d.infoWindow.close();
+            d.minimalInfoWindow.close();
+        });
+    };
+    GMap.prototype.showMatchingPlaces = function (name) {
+        var _this = this;
+        name = name || '';
+        var count = 0;
+        this.detailList.forEach(function (d) {
+            d.infoWindow.close();
+            d.minimalInfoWindow.close();
+            if (d.place.name.toLowerCase().indexOf(name.trim().toLowerCase()) >= 0) {
+                d.marker.setMap(_this.map);
+                d.minimalInfoWindow.open(_this.map, d.marker);
+                count += 1;
+            }
+            else {
+                d.marker.setMap(null);
+            }
+        });
+        return count;
+    };
+    GMap.prototype.showAllMarkers = function () {
+        var _this = this;
+        this.detailList.forEach(function (d) {
+            d.marker.setMap(_this.map);
+        });
+    };
+    GMap.prototype.choosePlace = function (place) {
+        var _this = this;
+        this.detailList.forEach(function (d) {
+            if (d.place === place) {
+                _this.closeAllInfoWindows();
+                d.infoWindow.open(_this.map, d.marker);
+                _this.animateMarker(d.marker);
+            }
+        });
+    };
+    return GMap;
+}());
+exports.GMap = GMap;
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ko = __webpack_require__(0);
+var snackbar_1 = __webpack_require__(2);
+var MainViewModel = (function () {
+    function MainViewModel(map) {
+        this.map = map;
+        this.filter = ko.observable('');
+        // this is required to prevent the wrong scope from being used 
+        // when onFilterChange is invoked from the Filter component
+        this.mvm = this;
+    }
+    MainViewModel.prototype.onFilterChange = function (s) {
+        s = (s || '').trim();
+        this.filter(s);
+        if (s) {
+            var count = this.map.showMatchingPlaces(s);
+            if (count === 0) {
+                snackbar_1.show('No matching places found', { backgroundColor: 'red' });
+            }
+        }
+        else {
+            this.map.showAllMarkers();
+            this.map.closeAllInfoWindows();
+        }
+    };
+    MainViewModel.prototype.onPlaceSelect = function (p) {
+        this.map.choosePlace(p);
+    };
+    return MainViewModel;
+}());
+exports.MainViewModel = MainViewModel;
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "hello.html";
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "location-list.html";
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "place-filter.html";
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ko = __webpack_require__(0);
+var HelloVM = (function () {
+    function HelloVM(params) {
+        var _this = this;
+        this.message = ko.observable(params.greeting || '');
+        this.greeting = ko.computed(function () {
+            return _this.message() && _this.message().trim()
+                ? _this.message().trim()
+                : '';
+        });
+    }
+    return HelloVM;
+}());
+exports.HelloVM = HelloVM;
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ko = __webpack_require__(0);
+var LocationListVM = (function () {
+    function LocationListVM(params) {
+        var _this = this;
+        this.places = [];
+        this.filteredPlaces = ko.observableArray([]);
+        this.showList = ko.observable(true);
+        if (window.innerWidth < 600) {
+            // hide the list of places by default for smaller screens
+            this.showList(false);
+        }
+        this.onPlaceSelect = params.onPlaceSelect;
+        this.places = params.places || [];
+        this.message = ko.observable(params.greeting || '');
+        this.greeting = ko.computed(function () {
+            return _this.message() && _this.message().trim()
+                ? _this.message().trim()
+                : '';
+        });
+        this.handleFilter(params.filter);
+        this.updateFilter(params.filter());
+    }
+    LocationListVM.prototype.updateFilter = function (s) {
+        s = (s || '').trim();
+        this.filteredPlaces(this.places.filter(function (p) { return p.name.toLowerCase().indexOf(s.toLowerCase()) >= 0; }));
+    };
+    LocationListVM.prototype.handleFilter = function (filter) {
+        filter.subscribe(this.updateFilter.bind(this));
+    };
+    LocationListVM.prototype.toggleList = function () {
+        this.showList(!this.showList());
+    };
+    LocationListVM.prototype.onLocationClickFactory = function (parent) {
+        var _this = this;
+        return function (place) {
+            _this.onPlaceSelect && _this.onPlaceSelect(place);
+        };
+    };
+    return LocationListVM;
+}());
+exports.LocationListVM = LocationListVM;
+
+
+/***/ }),
 /* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ko = __webpack_require__(0);
+var PlaceFilterVM = (function () {
+    function PlaceFilterVM(params) {
+        this.filter = ko.observable('');
+        this.onChangeCallback = params.onChange;
+    }
+    PlaceFilterVM.prototype.onInput = function (e) {
+        this.onChangeCallback && this.onChangeCallback(this.filter());
+    };
+    return PlaceFilterVM;
+}());
+exports.PlaceFilterVM = PlaceFilterVM;
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+var _this = this;
+Object.defineProperty(exports, "__esModule", { value: true });
+var ko = __webpack_require__(0);
+__webpack_require__(3);
+__webpack_require__(4);
+var snackbar_1 = __webpack_require__(2);
+var map_1 = __webpack_require__(8);
+var location_list_c_1 = __webpack_require__(6);
+var hello_c_1 = __webpack_require__(5);
+var place_filter_c_1 = __webpack_require__(7);
+var vm_1 = __webpack_require__(9);
+(function () { return __awaiter(_this, void 0, void 0, function () {
+    var e_1;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                // Initialize all the components
+                return [4 /*yield*/, Promise.all([
+                        hello_c_1.initHello(),
+                        location_list_c_1.initLocationList(),
+                        place_filter_c_1.initPlaceFilter(),
+                    ])];
+            case 1:
+                // Initialize all the components
+                _a.sent();
+                return [3 /*break*/, 3];
+            case 2:
+                e_1 = _a.sent();
+                snackbar_1.show(e_1.toString(), { backgroundColor: 'red' });
+                console.error(e_1);
+                return [3 /*break*/, 3];
+            case 3:
+                // Set the callback function for google maps
+                window['initMap'] = initializeMap;
+                return [2 /*return*/];
+        }
+    });
+}); })();
+function initializeMap() {
+    var map = new map_1.GMap();
+    ko.applyBindings(new vm_1.MainViewModel(map));
+}
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function get(url) {
+    return new Promise(function (resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        var failHandler = function (ev) {
+            reject(ev);
+        };
+        xhr.onerror = failHandler;
+        xhr.onabort = failHandler;
+        xhr.ontimeout = failHandler;
+        xhr.onload = function (ev) {
+            if (xhr.status === 200) {
+                resolve(xhr.responseText);
+            }
+            else {
+                failHandler(ev);
+            }
+        };
+        xhr.send();
+    });
+}
+exports.get = get;
+
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6960,108 +7145,77 @@ exports.defaultPlaces = [
 
 
 /***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-function show(message, options) {
-    if (options === void 0) { options = {}; }
-    var snackbar = document.createElement('div');
-    snackbar.className = 'snackbar show';
-    snackbar.innerHTML = message || 'Default message';
-    snackbar.style.color = options.color || '#fff';
-    snackbar.style.backgroundColor = options.backgroundColor || '#333';
-    var duration = options.duration || 3000;
-    document.body.appendChild(snackbar);
-    setTimeout(function () {
-        document.body.removeChild(snackbar);
-    }, duration);
-}
-exports.show = show;
-
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var place_filter_vm_1 = __webpack_require__(19);
-__webpack_require__(18);
-var koutil_1 = __webpack_require__(14);
-function initPlaceFilter() {
-    return koutil_1.KOUtil.registerComponent('place-filter', place_filter_vm_1.PlaceFilterVM, '/place-filter.html');
-}
-exports.initPlaceFilter = initPlaceFilter;
-
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "place-filter.html";
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var ko = __webpack_require__(5);
-var PlaceFilterVM = (function () {
-    function PlaceFilterVM(params) {
-        this.filter = ko.observable('');
-        this.onChangeCallback = params.onChange;
-    }
-    PlaceFilterVM.prototype.onInput = function (e) {
-        this.onChangeCallback && this.onChangeCallback(this.filter());
-    };
-    return PlaceFilterVM;
-}());
-exports.PlaceFilterVM = PlaceFilterVM;
-
-
-/***/ }),
+/* 19 */,
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-var ko = __webpack_require__(5);
-var snackbar_1 = __webpack_require__(16);
-var MainViewModel = (function () {
-    function MainViewModel(map) {
-        this.map = map;
-        this.filter = ko.observable('');
-        // this is required to prevent the wrong scope from being used 
-        // when onFilterChange is invoked from the Filter component
-        this.mvm = this;
-    }
-    MainViewModel.prototype.onFilterChange = function (s) {
-        s = (s || '').trim();
-        this.filter(s);
-        if (s) {
-            var count = this.map.showMatchingPlaces(s);
-            if (count === 0) {
-                snackbar_1.show('No matching places found', { backgroundColor: 'red' });
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
             }
-        }
-        else {
-            this.map.showAllMarkers();
-            this.map.closeAllInfoWindows();
-        }
-    };
-    MainViewModel.prototype.onPlaceSelect = function (p) {
-        this.map.choosePlace(p);
-    };
-    return MainViewModel;
-}());
-exports.MainViewModel = MainViewModel;
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var load_1 = __webpack_require__(17);
+function getPlaceContact(p) {
+    return __awaiter(this, void 0, void 0, function () {
+        var url, resultString, obj, response, i, venue, name_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    url = "https://api.foursquare.com/v2/venues/search?ll=" + p.geometry.location.lat + "," + p.geometry.location.lng + "&client_id=C5IARL1R1SRT13F2BDPIVJPXHC2LAPCNFSQ5W5CNGMLFUJLH&client_secret=2ZFAO2LR1NM0RPQHAUF4CXPOI2PFB0TH5A3HSJTCNXSNGITC&v=20170620";
+                    return [4 /*yield*/, load_1.get(url)];
+                case 1:
+                    resultString = _a.sent();
+                    obj = JSON.parse(resultString);
+                    response = obj.response;
+                    if (response && response.venues && Array.isArray(response.venues)) {
+                        for (i = 0; i < response.venues.length; i++) {
+                            venue = response.venues[i];
+                            name_1 = venue.name;
+                            if (name_1 && typeof name_1 === 'string' &&
+                                name_1.trim().toLowerCase().indexOf(p.name.trim().toLowerCase()) >= 0) {
+                                return [2 /*return*/, venue.contact];
+                            }
+                        }
+                    }
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getPlaceContact = getPlaceContact;
 
 
 /***/ })

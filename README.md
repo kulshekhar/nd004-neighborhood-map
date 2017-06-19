@@ -21,6 +21,10 @@ yarn global add typescript webpack lite-server concurrently
 
 Ensure that the executables for these packages are in your PATH.
 
+## Info
+
+In addition to Google maps, this project uses APIs from Foursquare to obtain social media details for the selected places.
+
 ## Setup
 
 Clone the repository and `cd` into the directory:

@@ -1,7 +1,3 @@
-@import './snackbar';
-@import './place-filter';
-@import './location-list';
-
 html, body {
   margin: 0;
   padding: 0;
@@ -13,4 +9,12 @@ html, body {
 #map {
   width: 100%;
   height: 100%;
+}
+
+@import './snackbar';
+@import './place-filter';
+@import './location-list';
+
+.info-icon {
+  margin-right: 16px;
 }

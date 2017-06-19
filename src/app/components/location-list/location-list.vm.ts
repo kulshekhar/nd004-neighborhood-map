@@ -1,5 +1,5 @@
 import * as ko from 'knockout';
-import { Place } from "../../models/google-maps";
+import { Place } from "../../types/google-maps";
 
 export class LocationListVM {
   message: KnockoutObservable<String>;
@@ -16,9 +16,9 @@ export class LocationListVM {
     onPlaceSelect?: (Place) => void
   }) {
 
-    if (screen.width < 600) {
+    if (window.innerWidth < 600) {
       // hide the list of places by default for smaller screens
-      this.showList = ko.observable(false);
+      this.showList(false);
     }
     this.onPlaceSelect = params.onPlaceSelect;
     this.places = params.places || [];

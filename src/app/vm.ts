@@ -1,7 +1,7 @@
 import * as ko from 'knockout';
 import { GMap } from "./map";
 import { show } from "./util/snackbar";
-import { Place } from "./models/google-maps";
+import { Place } from "./types/google-maps";
 
 export class MainViewModel {
   mvm: MainViewModel;

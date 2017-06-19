@@ -40,4 +40,13 @@ export type PlaceDetails = {
   minimalInfoWindow?: google.maps.InfoWindow;
   marker?: google.maps.Marker;
   details?: any;
+  contact?: Contact;
 }
+
+export type Contact = {
+  phone?: string;
+  formattedPhone?: string;
+  twitter?: string;
+  facebookName?: string;
+  facebookUsername?: string;
+};
