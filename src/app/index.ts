@@ -30,12 +30,7 @@ import { MainViewModel } from "./vm";
   window['initMap'] = initializeMap;
 })();
 
-function initializeKO() {
-  const map = new GMap();
-  console.log(this);
-  ko.applyBindings(new MainViewModel(map));
-}
-
 function initializeMap() {
-  initializeKO();
+  const map = new GMap();
+  ko.applyBindings(new MainViewModel(map));
 }

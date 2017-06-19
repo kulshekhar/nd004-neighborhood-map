@@ -7,16 +7,16 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="style.css">
-  <script defer src="app.js"></script>
-  <script defer src="https://maps.googleapis.com/maps/api/js?v=3&libraries=places&key=AIzaSyDY3OIbf85-tpZ-rDCLiyhHY8vqjWo55sQ&callback=initMap"></script>
 </head>
 
 <body>
   <place-filter params="onChange: onFilterChange.bind(mvm)"></place-filter>
-  <location-list></location-list>
+  <location-list params="places: mvm.map.places, onPlaceSelect: onPlaceSelect.bind(mvm)"></location-list>
 
   <main id="map"></main>
 
+  <script src="app.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3&libraries=places&key=AIzaSyDY3OIbf85-tpZ-rDCLiyhHY8vqjWo55sQ&callback=initMap"></script>
 </body>
 
 </html>

@@ -90,6 +90,7 @@ var GMap = (function () {
     function GMap() {
         this.mapContainer = document.getElementById('map');
         this.detailList = [];
+        this.places = [];
         this.map = new google.maps.Map(this.mapContainer, {
             center: places_1.defaultLocation,
             zoom: 14,
@@ -99,6 +100,7 @@ var GMap = (function () {
     }
     GMap.prototype.initializeMarkers = function () {
         var _this = this;
+        this.places = places_1.defaultPlaces;
         places_1.defaultPlaces.forEach(function (p) {
             var marker = new google.maps.Marker({
                 position: p.geometry.location,
@@ -153,6 +155,15 @@ var GMap = (function () {
         var _this = this;
         this.detailList.forEach(function (d) {
             d.marker.setMap(_this.map);
+        });
+    };
+    GMap.prototype.choosePlace = function (place) {
+        var _this = this;
+        this.detailList.forEach(function (d) {
+            if (d.place === place) {
+                _this.closeAllInfoWindows();
+                d.infoWindow.open(_this.map, d.marker);
+            }
         });
     };
     return GMap;
@@ -240,13 +251,9 @@ var vm_1 = __webpack_require__(20);
         }
     });
 }); })();
-function initializeKO() {
-    var map = new map_1.GMap();
-    console.log(this);
-    ko.applyBindings(new vm_1.MainViewModel(map));
-}
 function initializeMap() {
-    initializeKO();
+    var map = new map_1.GMap();
+    ko.applyBindings(new vm_1.MainViewModel(map));
 }
 
 
@@ -6227,6 +6234,14 @@ var ko = __webpack_require__(5);
 var LocationListVM = (function () {
     function LocationListVM(params) {
         var _this = this;
+        this.places = [];
+        this.showList = ko.observable(true);
+        if (screen.width < 600) {
+            // hide the list of places by default for smaller screens
+            this.showList = ko.observable(false);
+        }
+        this.onPlaceSelect = params.onPlaceSelect;
+        this.places = params.places || [];
         this.message = ko.observable(params.greeting || '');
         this.greeting = ko.computed(function () {
             return _this.message() && _this.message().trim()
@@ -6234,6 +6249,15 @@ var LocationListVM = (function () {
                 : '';
         });
     }
+    LocationListVM.prototype.toggleList = function () {
+        this.showList(!this.showList());
+    };
+    LocationListVM.prototype.onLocationClickFactory = function (parent) {
+        var _this = this;
+        return function (place) {
+            _this.onPlaceSelect && _this.onPlaceSelect(place);
+        };
+    };
     return LocationListVM;
 }());
 exports.LocationListVM = LocationListVM;
@@ -7016,6 +7040,9 @@ var MainViewModel = (function () {
             this.map.showAllMarkers();
             this.map.closeAllInfoWindows();
         }
+    };
+    MainViewModel.prototype.onPlaceSelect = function (p) {
+        this.map.choosePlace(p);
     };
     return MainViewModel;
 }());

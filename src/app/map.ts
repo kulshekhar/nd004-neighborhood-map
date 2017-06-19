@@ -1,10 +1,11 @@
 import { defaultPlaces, defaultLocation } from "./util/places";
-import { PlaceDetails } from "./models/google-maps";
+import { PlaceDetails, Place } from "./models/google-maps";
 
 export class GMap {
   mapContainer = document.getElementById('map');
   map: google.maps.Map;
   detailList: PlaceDetails[] = [];
+  places: Place[] = [];
 
   constructor() {
     this.map = new google.maps.Map(this.mapContainer, {
@@ -18,6 +19,8 @@ export class GMap {
   }
 
   initializeMarkers() {
+    this.places = defaultPlaces;
+
     defaultPlaces.forEach(p => {
       const marker = new google.maps.Marker({
         position: p.geometry.location,
@@ -78,6 +81,15 @@ export class GMap {
   showAllMarkers() {
     this.detailList.forEach(d => {
       d.marker.setMap(this.map);
+    });
+  }
+
+  choosePlace(place: Place) {
+    this.detailList.forEach(d => {
+      if (d.place === place) {
+        this.closeAllInfoWindows();
+        d.infoWindow.open(this.map, d.marker);
+      }
     });
   }
 }

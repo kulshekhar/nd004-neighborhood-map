@@ -1,5 +1,6 @@
 import { GMap } from "./map";
 import { show } from "./util/snackbar";
+import { Place } from "./models/google-maps";
 
 export class MainViewModel {
   mvm: MainViewModel;
@@ -22,5 +23,9 @@ export class MainViewModel {
       this.map.showAllMarkers();
       this.map.closeAllInfoWindows();
     }
+  }
+
+  onPlaceSelect(p: Place) {
+    this.map.choosePlace(p);
   }
 }
