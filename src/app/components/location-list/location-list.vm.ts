@@ -2,8 +2,6 @@ import * as ko from 'knockout';
 import { Place } from "../../types/google-maps";
 
 export class LocationListVM {
-  message: KnockoutObservable<String>;
-  greeting: KnockoutObservable<String>;
   places: Place[] = [];
   filteredPlaces = ko.observableArray<Place>([]);
   showList = ko.observable(true);
@@ -22,13 +20,6 @@ export class LocationListVM {
     }
     this.onPlaceSelect = params.onPlaceSelect;
     this.places = params.places || [];
-    this.message = ko.observable(params.greeting || '');
-
-    this.greeting = ko.computed(() =>
-      this.message() && this.message().trim()
-        ? this.message().trim()
-        : ''
-    );
 
     this.handleFilter(params.filter);
     this.updateFilter(params.filter());

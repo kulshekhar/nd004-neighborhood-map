@@ -81,12 +81,11 @@ export class GMap {
   }
 
   handleClicksOutside() {
-    google.maps.event.addListener(this.map, 'click', (e) => {
-      this.detailList.forEach(d => {
-        d.infoWindow.close();
-        d.minimalInfoWindow.close();
-      });
-    });
+    google.maps.event.addListener(
+      this.map,
+      'click',
+      this.closeAllInfoWindows.bind(this),
+    );
   }
 
   closeAllInfoWindows() {
