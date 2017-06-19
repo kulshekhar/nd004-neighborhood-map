@@ -1,12 +1,26 @@
 {
   "name": "nd004-neighborhood-map",
   "version": "1.0.0",
-  "main": "index.js",
   "repository": "https://github.com/kulshekhar/nd004-neighborhood-map",
   "license": "MIT",
+  "scripts": {
+    "clean": "rm dist -rf && mkdir dist",
+    "build": "yarn run clean && NODE_ENV=production webpack -p --config webpack.prod.config.js",
+    "serve": "webpack-dev-server"
+  },
   "devDependencies": {
     "@types/googlemaps": "^3.26.14",
-    "@types/knockout": "^3.4.41"
+    "@types/knockout": "^3.4.41",
+    "css-loader": "^0.28.4",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "file-loader": "^0.11.2",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "ts-loader": "^2.1.0",
+    "typescript": "^2.3.4",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
     "knockout": "^3.4.2"
