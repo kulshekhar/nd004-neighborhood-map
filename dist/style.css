@@ -1,0 +1,26 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%; }
+
+aside {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  max-width: 300px;
+  width: 30%; }
+  aside h3 {
+    margin: 0; }
+  @media screen and (max-width: 600px) {
+    aside ul {
+      display: none; } }
+  @media screen and (max-width: 350px) {
+    aside {
+      left: 0; } }
+
+#map {
+  width: 100%;
+  height: 100%; }
+
+/*# sourceMappingURL=style.css.map*/

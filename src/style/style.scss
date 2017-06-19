@@ -1,0 +1,39 @@
+// @import './snackbar';
+
+$maxWidthToHideSidebar: 600px;
+$maxWidthForNoPadding: 350px;
+$containerPadding: 16px;
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+aside {
+  position: fixed;
+  bottom: $containerPadding;
+  left: $containerPadding;
+  max-width: 300px;
+  width: 30%;
+  
+  h3 {
+    margin: 0;
+  }
+
+  @media screen and (max-width: $maxWidthToHideSidebar) {
+    ul {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: $maxWidthForNoPadding) {
+    left: 0;
+  }
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
