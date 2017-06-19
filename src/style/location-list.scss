@@ -1,0 +1,28 @@
+@import './vars';
+
+location-list {
+  z-index: 10;
+  position: fixed;
+  bottom: $containerPadding;
+  left: $containerPadding;
+  max-width: 300px;
+  width: 30%;
+  
+  h3 {
+    margin: 0;
+  }
+
+  ul.open {
+    display: block;
+  }
+
+  @media screen and (max-width: $maxWidthToHideSidebar) {
+    ul {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: $maxWidthForNoPadding) {
+    left: 0;
+  }
+}

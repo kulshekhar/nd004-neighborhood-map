@@ -1,0 +1,21 @@
+@import './vars';
+
+place-filter {
+  z-index: 10;
+  position: fixed;
+  top: 32px;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  left: 50%;
+  padding: 8px;
+  border-radius: 5px;
+
+  input {
+    width: 90%;
+    border-radius: 5px;
+    border: 10px #333 solid;
+    padding: 5px 10px;
+    outline: none;
+  }
+}
+

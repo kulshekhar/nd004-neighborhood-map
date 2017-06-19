@@ -4,8 +4,38 @@ import '../style/style.scss';
 import '../index.html';
 
 import { get } from './util/load';
-import { init as initHello } from './components/hello/hello.c';
 import { show } from "./util/snackbar";
-import { initializeMap, GMap } from "./map";
+import { GMap } from "./map";
+import { initLocationList } from "./components/location-list/location-list.c";
+import { initHello } from "./components/hello/hello.c";
+import { initPlaceFilter } from "./components/place-filter/place-filter.c";
+import { MainViewModel } from "./vm";
 
-window['initMap'] = GMap;
+(async () => {
+  try {
+    // Initialize all the components
+    await Promise.all([
+      initHello(),
+      initLocationList(),
+      initPlaceFilter(),
+    ]);
+
+
+  } catch (e) {
+    show(e.toString(), { backgroundColor: 'red' });
+    console.error(e);
+  }
+
+  // Set the callback function for google maps
+  window['initMap'] = initializeMap;
+})();
+
+function initializeKO() {
+  const map = new GMap();
+  console.log(this);
+  ko.applyBindings(new MainViewModel(map));
+}
+
+function initializeMap() {
+  initializeKO();
+}

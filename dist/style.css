@@ -1,23 +1,92 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%; }
+.snackbar {
+  width: 250px;
+  max-width: 80%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  border-radius: 2px;
+  padding: 8px;
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  bottom: 16px; }
 
-aside {
+.snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s; }
+
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0; }
+  to {
+    bottom: 16px;
+    opacity: 1; } }
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0; }
+  to {
+    bottom: 16px;
+    opacity: 1; } }
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 16px;
+    opacity: 1; }
+  to {
+    bottom: 0;
+    opacity: 0; } }
+
+@keyframes fadeout {
+  from {
+    bottom: 16px;
+    opacity: 1; }
+  to {
+    bottom: 0;
+    opacity: 0; } }
+
+place-filter {
+  z-index: 10;
+  position: fixed;
+  top: 32px;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  left: 50%;
+  padding: 8px;
+  border-radius: 5px; }
+  place-filter input {
+    width: 90%;
+    border-radius: 5px;
+    border: 10px #333 solid;
+    padding: 5px 10px;
+    outline: none; }
+
+location-list {
+  z-index: 10;
   position: fixed;
   bottom: 16px;
   left: 16px;
   max-width: 300px;
   width: 30%; }
-  aside h3 {
+  location-list h3 {
     margin: 0; }
+  location-list ul.open {
+    display: block; }
   @media screen and (max-width: 600px) {
-    aside ul {
+    location-list ul {
       display: none; } }
   @media screen and (max-width: 350px) {
-    aside {
+    location-list {
       left: 0; } }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: Roboto; }
 
 #map {
   width: 100%;

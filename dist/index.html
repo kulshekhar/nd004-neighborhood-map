@@ -5,20 +5,17 @@
   <title></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="style.css">
   <script defer src="app.js"></script>
-  <script defer src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDY3OIbf85-tpZ-rDCLiyhHY8vqjWo55sQ&callback=initMap"></script>
+  <script defer src="https://maps.googleapis.com/maps/api/js?v=3&libraries=places&key=AIzaSyDY3OIbf85-tpZ-rDCLiyhHY8vqjWo55sQ&callback=initMap"></script>
 </head>
 
 <body>
-  <aside>
-    <ul class="location-list">
-      fasf
-    </ul>
-    <h3>Locations</h3>
-  </aside>
+  <place-filter params="onChange: onFilterChange.bind(mvm)"></place-filter>
+  <location-list></location-list>
 
-  <main id="map">asfasfa</main>
+  <main id="map"></main>
 
 </body>
 

@@ -1,30 +1,83 @@
-const defaultLocation = { lat: 40.74135, lng: -73.99802 };
+import { defaultPlaces, defaultLocation } from "./util/places";
+import { PlaceDetails } from "./models/google-maps";
 
 export class GMap {
+  mapContainer = document.getElementById('map');
   map: google.maps.Map;
+  detailList: PlaceDetails[] = [];
 
   constructor() {
-    this.map = new google.maps.Map(document.getElementById('map'), {
+    this.map = new google.maps.Map(this.mapContainer, {
       center: defaultLocation,
       zoom: 14,
     });
 
-    var marker = new google.maps.Marker({
-      position: defaultLocation,
-      map: this.map,
-      title: 'Some Position'
-    });
+    this.initializeMarkers();
 
-    var infoWindow = new google.maps.InfoWindow({
-      content: 'Some content'
-    });
+    this.handleClicksOutside();
+  }
 
-    marker.addListener('click', () => {
-      infoWindow.open(this.map, marker);
+  initializeMarkers() {
+    defaultPlaces.forEach(p => {
+      const marker = new google.maps.Marker({
+        position: p.geometry.location,
+        map: this.map,
+        title: p.name
+      });
+
+      const infoWindow = new google.maps.InfoWindow({
+        content: `<h3>${p.name}</h3>
+        <p>${p.formatted_address}</p>
+        `
+      });
+
+      const minimalInfoWindow = new google.maps.InfoWindow({
+        content: `<b>${p.name}</b>`
+      });
+
+      marker.addListener('click', () => {
+        this.closeAllInfoWindows();
+        infoWindow.open(this.map, marker);
+      });
+
+      this.detailList.push({ place: p, infoWindow, marker, minimalInfoWindow });
     });
   }
-}
 
-export function initializeMap() {
+  handleClicksOutside() {
+    google.maps.event.addListener(this.map, 'click', (e) => {
+      this.detailList.forEach(d => {
+        d.infoWindow.close();
+        d.minimalInfoWindow.close();
+      });
+    });
+  }
 
+  closeAllInfoWindows() {
+    this.detailList.forEach(d => {
+      d.infoWindow.close();
+      d.minimalInfoWindow.close();
+    });
+  }
+
+  showMatchingPlaces(name: string): number {
+    name = name || '';
+    let count = 0;
+    this.detailList.forEach(d => {
+      if (d.place.name.toLowerCase().indexOf(name.trim().toLowerCase()) >= 0) {
+        d.marker.setMap(this.map);
+        d.minimalInfoWindow.open(this.map, d.marker);
+        count += 1;
+      } else {
+        d.marker.setMap(null);
+      }
+    });
+    return count;
+  }
+
+  showAllMarkers() {
+    this.detailList.forEach(d => {
+      d.marker.setMap(this.map);
+    });
+  }
 }
