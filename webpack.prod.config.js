@@ -4,7 +4,7 @@ const commonConfig = require('./webpack.config');
 
 const extractSass = new ExtractTextPlugin({
   filename: "style.css",
-  disable: process.env.NODE_ENV !== "production"
+  disable: true
 });
 
 commonConfig.devtool = undefined;
