@@ -1,9 +1,11 @@
+import * as ko from 'knockout';
 import { GMap } from "./map";
 import { show } from "./util/snackbar";
 import { Place } from "./models/google-maps";
 
 export class MainViewModel {
   mvm: MainViewModel;
+  filter = ko.observable<string>('');
 
   constructor(private map: GMap) {
     // this is required to prevent the wrong scope from being used 
@@ -13,6 +15,7 @@ export class MainViewModel {
 
   onFilterChange(s: string) {
     s = (s || '').trim();
+    this.filter(s);
 
     if (s) {
       const count = this.map.showMatchingPlaces(s);

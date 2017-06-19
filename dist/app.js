@@ -6235,6 +6235,7 @@ var LocationListVM = (function () {
     function LocationListVM(params) {
         var _this = this;
         this.places = [];
+        this.filteredPlaces = ko.observableArray([]);
         this.showList = ko.observable(true);
         if (screen.width < 600) {
             // hide the list of places by default for smaller screens
@@ -6248,7 +6249,16 @@ var LocationListVM = (function () {
                 ? _this.message().trim()
                 : '';
         });
+        this.handleFilter(params.filter);
+        this.updateFilter(params.filter());
     }
+    LocationListVM.prototype.updateFilter = function (s) {
+        s = (s || '').trim();
+        this.filteredPlaces(this.places.filter(function (p) { return p.name.toLowerCase().indexOf(s.toLowerCase()) >= 0; }));
+    };
+    LocationListVM.prototype.handleFilter = function (filter) {
+        filter.subscribe(this.updateFilter.bind(this));
+    };
     LocationListVM.prototype.toggleList = function () {
         this.showList(!this.showList());
     };
@@ -7020,16 +7030,19 @@ exports.PlaceFilterVM = PlaceFilterVM;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var ko = __webpack_require__(5);
 var snackbar_1 = __webpack_require__(16);
 var MainViewModel = (function () {
     function MainViewModel(map) {
         this.map = map;
+        this.filter = ko.observable('');
         // this is required to prevent the wrong scope from being used 
         // when onFilterChange is invoked from the Filter component
         this.mvm = this;
     }
     MainViewModel.prototype.onFilterChange = function (s) {
         s = (s || '').trim();
+        this.filter(s);
         if (s) {
             var count = this.map.showMatchingPlaces(s);
             if (count === 0) {

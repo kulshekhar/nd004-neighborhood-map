@@ -5,12 +5,14 @@ export class LocationListVM {
   message: KnockoutObservable<String>;
   greeting: KnockoutObservable<String>;
   places: Place[] = [];
+  filteredPlaces = ko.observableArray<Place>([]);
   showList = ko.observable(true);
   onPlaceSelect: (Place) => void;
 
   constructor(params: {
     greeting?: string,
     places?: Place[],
+    filter?: KnockoutObservable<string>,
     onPlaceSelect?: (Place) => void
   }) {
 
@@ -18,7 +20,6 @@ export class LocationListVM {
       // hide the list of places by default for smaller screens
       this.showList = ko.observable(false);
     }
-
     this.onPlaceSelect = params.onPlaceSelect;
     this.places = params.places || [];
     this.message = ko.observable(params.greeting || '');
@@ -28,6 +29,21 @@ export class LocationListVM {
         ? this.message().trim()
         : ''
     );
+
+    this.handleFilter(params.filter);
+    this.updateFilter(params.filter());
+  }
+
+  updateFilter(s: string) {
+    s = (s || '').trim();
+
+    this.filteredPlaces(this.places.filter(
+      (p: Place) => p.name.toLowerCase().indexOf(s.toLowerCase()) >= 0
+    ));
+  }
+
+  handleFilter(filter: KnockoutObservable<string>) {
+    filter.subscribe(this.updateFilter.bind(this));
   }
 
   toggleList() {

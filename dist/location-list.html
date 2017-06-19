@@ -1,5 +1,5 @@
 <div data-bind="if: showList">
-  <ul class="location-list" data-bind="foreach: places">
+  <ul class="location-list" data-bind="foreach: filteredPlaces">
     <li data-bind="text: name, click: $parent.onLocationClickFactory($parent)"></li>
   </ul>
 </div>
