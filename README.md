@@ -25,11 +25,6 @@ yarn
 
 The project's source code lives in the `src` directory.
 
-If you're using windows, you'll have to update the `scripts` in `package.json` to work correctly:
-- The `clean` script to delete and create the `dist` directory
-- The `build` script to ensure that the environment variable `NODE_ENV` is set to `production`.
-- All the scripts to use the correct path separator.
-
 ## Running the app
 
 Enter the `dist` directory:
