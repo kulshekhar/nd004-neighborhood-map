@@ -5,11 +5,11 @@ export class PlaceFilterVM {
   onChangeCallback: (string) => void;
 
   constructor(params: any) {
-    this.filter = ko.observable('');
     this.onChangeCallback = params.onChange;
-  }
 
-  onInput(e: Event) {
-    this.onChangeCallback && this.onChangeCallback(this.filter());
+    this.filter = ko.observable('');
+    this.filter.subscribe(s => {
+      this.onChangeCallback && this.onChangeCallback(this.filter());
+    });
   }
 }
