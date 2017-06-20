@@ -30,6 +30,30 @@ If you're using windows, you'll have to update the `scripts` in `package.json` t
 - The `build` script to ensure that the environment variable `NODE_ENV` is set to `production`.
 - All the scripts to use the correct path separator.
 
+## Running the app
+
+Enter the `dist` directory:
+
+```
+cd dist
+```
+
+Start a local server in this directory (using python or anything else you prefer).
+
+With python2
+
+```
+python -m SimpleHTTPServer
+```
+
+With python3
+
+```
+python -m http.server
+```
+
+This will start the server on port 8000 and you can access the app at http://localhost:8000
+
 ## Production
 
 To build for production, execute:
