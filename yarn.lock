@@ -1142,6 +1142,10 @@ error-ex@^1.2.0:
   dependencies:
     is-arrayish "^0.2.1"
 
+es6-promise@^4.0.5:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.1.0.tgz#dda03ca8f9f89bc597e689842929de7ba8cebdf0"
+
 escape-html@~1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
@@ -1494,6 +1498,12 @@ globule@^1.0.0:
     glob "~7.1.1"
     lodash "~4.17.4"
     minimatch "~3.0.2"
+
+google-maps-api-loader@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/google-maps-api-loader/-/google-maps-api-loader-0.3.0.tgz#73dd9c74f90b9d062510a7b813ab9df4d2658982"
+  dependencies:
+    es6-promise "^4.0.5"
 
 graceful-fs@^4.1.2, graceful-fs@^4.1.6:
   version "4.1.11"

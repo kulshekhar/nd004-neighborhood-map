@@ -24,6 +24,7 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
+    "google-maps-api-loader": "^0.3.0",
     "knockout": "^3.4.2"
   }
 }

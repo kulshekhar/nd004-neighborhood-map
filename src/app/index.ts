@@ -1,4 +1,5 @@
 import * as ko from 'knockout';
+import * as gmal from 'google-maps-api-loader';
 
 import '../style/style.scss';
 import '../index.html';
@@ -25,12 +26,19 @@ import { MainViewModel } from "./vm";
     show(e.toString(), { backgroundColor: 'red' });
     console.error(e);
   }
-
-  // Set the callback function for google maps
-  window['initMap'] = initializeMap;
 })();
 
-function initializeMap() {
-  const map = new GMap();
-  ko.applyBindings(new MainViewModel(map));
-}
+gmal({
+  libraries: ['places'],
+  apiKey: 'AIzaSyDY3OIbf85-tpZ-rDCLiyhHY8vqjWo55sQ'
+})
+  .then(() => {
+    const map = new GMap();
+    ko.applyBindings(new MainViewModel(map));
+  })
+  .catch(e => {
+    show('Unable to load Google maps. Please try again later.', {
+      backgroundColor: 'red',
+      duration: 10000
+    });
+  });
