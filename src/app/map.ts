@@ -104,11 +104,11 @@ export class GMap {
       d.infoWindow.close();
       d.minimalInfoWindow.close();
       if (d.place.name.toLowerCase().indexOf(name.trim().toLowerCase()) >= 0) {
-        d.marker.setMap(this.map);
+        d.marker.setVisible(true);
         d.minimalInfoWindow.open(this.map, d.marker);
         count += 1;
       } else {
-        d.marker.setMap(null);
+        d.marker.setVisible(false);
       }
     });
     return count;
