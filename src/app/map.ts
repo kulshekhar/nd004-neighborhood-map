@@ -45,7 +45,9 @@ export class GMap {
             additionalInfo += `<p>Phone: ${contact.formattedPhone}</p>`
           }
         }
-      } catch (e) { }
+      } catch (e) {
+        additionalInfo = `<p class="info-unavailable">Contact information is currently unavailable</p>`;
+      }
 
       const infoWindow = new google.maps.InfoWindow({
         content: `<h3>${p.name}</h3>
