@@ -1,5 +1,5 @@
-export function get(url): Promise<string> {
-  return new Promise<string>((resolve, reject) => {
+function getUrl(url) {
+  return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
     const failHandler = (ev) => {
