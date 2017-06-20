@@ -4,9 +4,8 @@
   "repository": "https://github.com/kulshekhar/nd004-neighborhood-map",
   "license": "MIT",
   "scripts": {
-    "clean": "rm dist -rf && mkdir dist",
-    "build": "yarn run clean && NODE_ENV=production node_modules/.bin/webpack -p --config webpack.prod.config.js",
-    "serve": "node_modules/.bin/concurrently 'node_modules/.bin/webpack -w' 'node_modules/.bin/lite-server'"
+    "build": "./build",
+    "serve": "./serve"
   },
   "devDependencies": {
     "@types/googlemaps": "^3.26.14",

@@ -70,6 +70,8 @@ yarn build
 
 This will create `index.html`, `app.js` and `style.css` in the `dist` folder.
 
+**Note:** On Windows, ensure that your path has no spaces.
+
 ## Development
 
 This project uses webpack and lite-server to enable live reload during development. To use it, execute:
@@ -87,3 +89,5 @@ yarn run serve
 The app will be accessible at http://localhost:3000
 
 The app in the browser will auto-refresh if there's any change in any of the project's files.
+
+**Note:** On Windows, ensure that your path has no spaces.

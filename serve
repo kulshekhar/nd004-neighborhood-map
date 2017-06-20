@@ -1,0 +1,1 @@
+node_modules/.bin/concurrently 'node_modules/.bin/webpack -w' 'node_modules/.bin/lite-server -c bs-config.json --baseDir="dist"'
