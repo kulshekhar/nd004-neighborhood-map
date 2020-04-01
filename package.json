@@ -25,6 +25,6 @@
   },
   "dependencies": {
     "google-maps-api-loader": "^0.3.0",
-    "knockout": "^3.4.2"
+    "knockout": "^3.5.0"
   }
 }
